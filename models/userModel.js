@@ -14,15 +14,19 @@ const User = sequelize.define('user',{
   },
   
 
-  phoneNumber: {
+ /* phoneNumber: {
     type: Sequelize.INTEGER,
     unique: true
   },
-
+*/
   email: {
     type: Sequelize.STRING,
     unique: false
-  } 
+  }, 
+
+  mobileNumber : {
+    type: Sequelize.STRING,
+  }
 });
 
 module.exports = User;
