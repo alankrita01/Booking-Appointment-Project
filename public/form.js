@@ -3,14 +3,16 @@ function userDetails(event){
   
   event.preventDefault();
 
-  const name = event.target.userName.value;
-  const phone = event.target.phone.value;
+  const userName = event.target.userName.value;
+  //const mobileNumber = event.target.mobileNumber.value;
   const email = event.target.email.value;
+  const mobileNumber = event.target.mobileNumber.value;
 
   const obj ={
-    name : name,
-    phone: phone,
-    email : email
+    userName : userName,
+    //mobileNumber: mobileNumber,
+    email : email,
+    mobileNumber : mobileNumber
   };
 
   
@@ -24,7 +26,6 @@ function userDetails(event){
     document.body.innerHTML = document.body.innerHTML + `<h4> Something Went Wrong</h4>`;
     console.log(err)
   })
-
 
   //localStorage.setItem("userDetails"+email,JSON.stringify(obj));
   //showNewUserOnScreen(obj);
@@ -48,42 +49,51 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 //Adding user details to dom
 function showNewUserOnScreen(user){
-  //const users = await axios.get('http://localhost:3000/user');
-  //console.log(user);
+  
 
-  document.getElementById('email').value = '';
   document.getElementById('userName').value = '';
-  document.getElementById('phone').value = '';
+  //document.getElementById('mobileNumber').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('mobileNumber').value = '';
 
   if(localStorage.getItem(user.email) != null){
     removeUserFromScreen(user.email);
   }
   const parentNode=document.getElementById('listOfUser');
-  const childHTML=`<li id=${user._id}> ${user.name} - ${user.phone} - ${user.email} 
-                    <button style="border-color: green;" onclick=editUserDetails('${user.email}','${user.name}','${user._id}')>Edit</button> 
-                    <button style="border-color: red;" onclick=deleteUser('${user._id}')>Delete</button> 
-                  </li> `;
+  const childHTML=`<li id=${user._id}> ${user.userName} - ${user.email} - ${user.mobileNumber}
+                    <button style="border-color: green;" onclick=editUserDetails('${user.email}','${user.userName}',${user.mobileNumber},'${user._id}')>Edit</button> 
+                    <button style="border-color: red;" onclick="deleteUser('${user.email}');">Pranav</button> 
+                  </li> <button type="button" onclick="window.open('https://www.google.com/')">google<button>`;
 
   parentNode.innerHTML=parentNode.innerHTML+childHTML;
 }
 
 //edit user
 
-function editUserDetails(emailId,name,phone,userId){
-  console.log(emailId,name,userId)
+function editUserDetails(emailId,userName,mobileNumber,userId){
+  console.log(emailId,userName,userId)
+    
+    document.getElementById('userName').value = userName;
+    //document.getElementById('mobileNumber').value = mobileNumber;
     document.getElementById('email').value = emailId;
-    document.getElementById('userName').value = name;
-    document.getElementById('phone').value = phone;
+    document.getElementById('mobileNumber').value = mobileNumber;
   
     deleteUser(userId);
   }
   
   //delete user function
+
+  function deleteUser2(userId){
+    console.log(userId);
+  }
   
   function deleteUser(userId){
     
     //localStorage.removeItem(emailId);
-    axios.delete(`https://localhost:4000/user/delete-user/${userId}`)
+    /*fetch('https://localhost:4000/user/delete-user/'+ userId, {
+        method: 'DELETE'
+    })*/
+    axios.delete(`https://localhost:4000/user/delete-user`)
     .then((response) => {
       //console.log(response);
       removeUserFromScreen(userId)
