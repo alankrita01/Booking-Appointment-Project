@@ -5,15 +5,17 @@ const postAddUser =  async (req,res,next) => {
 
    try{
     const userName = req.body.userName;
-    const phoneNumber = req.body.phoneNumber;
+    //const phoneNumber = req.body.phoneNumber;
     const email = req.body.email;
+    const mobileNumber = req.body.mobileNumber;
     
     
   
     const data = await User.create({
       userName : userName,
-      phoneNumber: phoneNumber,
-      email : email
+      //phoneNumber: phoneNumber,
+      email : email,
+      mobileNumber : mobileNumber
       
     })
 
@@ -43,13 +45,15 @@ const getUsers = async (req,res,next) => {
 
 //delete User
 const postDeleteUser = async(req,res,next) => {
+  console.log(req.body)
   try{
-    if(req.params.id =='undefined'){
+    if(req.params.email =='undefined'){
       console.log('For Delete, user id is missing');
       return res.status(400).json({err : 'ID is missing'})
     }
 
-    const userId = req.params.id;
+    const userId = req.params.email;
+    console.log(userId);
     await User.destroy({where: {id: userId}});
     res.sendStatus(200);
   }
