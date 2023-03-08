@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application booking Application</title>
-  <!--link rel="stylesheet" href="form.css"-->
+  <link rel="stylesheet" href="form.css">
 </head>
 <body>
   <header class="main-header">
@@ -13,10 +13,8 @@
   </header>
 
   <main>
-    <section class="container">
-
-      <form id="user-form" action="/user/add-user" method="POST" onsubmit="userDetails(event)">
-
+    <form id="user-form" action="/user/add-user" method="POST" onsubmit="userDetails(event)">
+      <section class="container">
         <div class="div-container">
           <label for="userName">User Name</label>
           <input type="text" name="userName" id="userName" placeholder="Full Name" ><br><br><br>
@@ -28,9 +26,11 @@
           <input type="tel" name="mobileNumber" id="mobileNumber" required><br><br><br>
         </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </section>
+        <button class="submit" type="submit">Submit</button>
+      </section>
+
+    </form>
+
   </main>
     
   <div class="div-list">
