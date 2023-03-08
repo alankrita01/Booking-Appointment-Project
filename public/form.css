@@ -1,84 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
-
-input {
-  caret-color: red;
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-color: #1b1b32;
+  color: #f5f6f7;
+  font-family: Tahoma;
+  font-size: 16px;
 }
 
-main {
-  margin: 0;
-  width: 100vw;
-  height: 70vh;
-  background: #ecf0f3;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  place-items: center;
-  overflow: hidden;
-  font-family: poppins;
+h1 {
+margin : 1em auto;
+text-align: center;
+}
+
+form {
+  width: 60vw;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding-bottom: 2em;
 }
 
 .container {
-  position: relative;
-  width: 350px;
-  height: 500px;
-  border-radius: 20px;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #ecf0f3;
-  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
-}
-
-
-.div-container {
-  text-align: left;
-  margin-top: 30px;
-}
-
-label, input, button {
-  display: block;
-  width: 100%;
-  padding: 0;
   border: none;
-  outline: none;
-  box-sizing: border-box;
+  padding: 2rem 0;
+  border-bottom: 3px solid #3b3b4f;
 }
 
 label {
-  margin-bottom: 4px;
+  display: block;
+  margin: 0.5rem 0;
 }
 
-label:nth-of-type(2) {
-  margin-top: 12px;
+input,
+select {
+  margin: 10px 0 0 0;
+  width: 100%;
+  min-height: 2em;
+  background-color: #0a0a23;
+  border: 1px solid #0a0a23;
+  color: #ffffff;
 }
 
-input::placeholder {
-  color: gray;
-}
-
-input {
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  height: 50px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-}
-
-button {
-  color: white;
-  margin-top: 20px;
-  background: #1DA1F2;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 900;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  transition: 0.5s;
+.submit {
+  display: block;
+  width: 60%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #3b3b4f;
+  border-color: white;
+  min-width: 300px;
 }
 
 button:hover {
-  box-shadow: none;
+  cursor: pointer;
+  background-color:#0a0a23;
+  color: #fff;
 }
+
+.div-list {
+  width: 60vw;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding-bottom: 2em;
+  border: none;
+  border-bottom: 3px solid #3b3b4f;
+}
+
 
