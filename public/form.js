@@ -4,15 +4,13 @@ function userDetails(event){
   event.preventDefault();
 
   const userName = event.target.userName.value;
-  //const mobileNumber = event.target.mobileNumber.value;
   const email = event.target.email.value;
   const mobileNumber = event.target.mobileNumber.value;
 
   const obj ={
-    userName : userName,
-    //mobileNumber: mobileNumber,
-    email : email,
-    mobileNumber : mobileNumber
+    userName : `${userName}`,
+    email : `${email}`,
+    mobileNumber : `${mobileNumber}`
   };
 
   
@@ -26,9 +24,6 @@ function userDetails(event){
     document.body.innerHTML = document.body.innerHTML + `<h4> Something Went Wrong</h4>`;
     console.log(err)
   })
-
-  //localStorage.setItem("userDetails"+email,JSON.stringify(obj));
-  //showNewUserOnScreen(obj);
 }
 
 
@@ -52,7 +47,6 @@ function showNewUserOnScreen(user){
   
 
   document.getElementById('userName').value = '';
-  //document.getElementById('mobileNumber').value = '';
   document.getElementById('email').value = '';
   document.getElementById('mobileNumber').value = '';
 
@@ -60,10 +54,10 @@ function showNewUserOnScreen(user){
     removeUserFromScreen(user.email);
   }
   const parentNode=document.getElementById('listOfUser');
-  const childHTML=`<li id=${user._id}> ${user.userName} - ${user.email} - ${user.mobileNumber}
-                    <button style="border-color: green;" onclick=editUserDetails('${user.email}','${user.userName}',${user.mobileNumber},'${user._id}')>Edit</button> 
-                    <button style="border-color: red;" onclick="deleteUser('${user.email}');">Pranav</button> 
-                  </li> <button type="button" onclick="window.open('https://www.google.com/')">google<button>`;
+  const childHTML=`<li id=${user.id}> ${user.userName} - ${user.email} - ${user.mobileNumber}
+                    <button style="margin: 5px; padding-left: 7px; padding-right: 7px; color:green; font-weight: bold;" onclick=editUserDetails('${user.email}','${user.userName}',${user.mobileNumber},'${user.id}')>Edit</button> 
+                    <button style="margin: 7px; padding-left: 7px; padding-right: 5px;  color:red; font-weight: bold;" onclick="deleteUser('${user.id}');">Delete</button> 
+                  </li>`;
 
   parentNode.innerHTML=parentNode.innerHTML+childHTML;
 }
@@ -83,24 +77,17 @@ function editUserDetails(emailId,userName,mobileNumber,userId){
   
   //delete user function
 
-  function deleteUser2(userId){
-    console.log(userId);
-  }
-  
   function deleteUser(userId){
-    
-    //localStorage.removeItem(emailId);
-    /*fetch('https://localhost:4000/user/delete-user/'+ userId, {
-        method: 'DELETE'
-    })*/
-    axios.delete(`https://localhost:4000/user/delete-user`)
+    console.log(userId+`pranav`)
+    axios.delete(`http://localhost:4000/user/delete-user/${userId}`)
     .then((response) => {
-      //console.log(response);
+      console.log(response);
       removeUserFromScreen(userId)
     })
     .catch((err) => {
       console.log(err)
     });
+    
   }
   
   
@@ -108,8 +95,9 @@ function editUserDetails(emailId,userName,mobileNumber,userId){
   function removeUserFromScreen(userId){
     const parentNode = document.getElementById('listOfUser');
     const childNodeToBeDeleted = document.getElementById(userId);
-  
+    //parentNode.removeChild(childNodeToBeDeleted);
     if(childNodeToBeDeleted) {
       parentNode.removeChild(childNodeToBeDeleted);
     }
+    window.location.reload();
   }
